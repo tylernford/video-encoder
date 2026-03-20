@@ -147,9 +147,10 @@ If ffprobe fails: all outputs set to `"error"`, job status `"error"`, `complete`
 
 _Filled in during `/build` phase_
 
-| Date | Task | Files | Notes |
-| ---- | ---- | ----- | ----- |
-| 2026-03-20 | Task 1 | server/src/lib/jobs.ts | Done as planned. Cross-file type error in encode.ts expected until Task 4. |
+| Date       | Task   | Files                    | Notes                                                                      |
+| ---------- | ------ | ------------------------ | -------------------------------------------------------------------------- |
+| 2026-03-20 | Task 1 | server/src/lib/jobs.ts   | Done as planned. Cross-file type error in encode.ts expected until Task 4. |
+| 2026-03-20 | Task 2 | server/src/lib/ffmpeg.ts | Done as planned.                                                           |
 
 ---
 
