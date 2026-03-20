@@ -36,10 +36,11 @@ Returns `200` with `{ status: "ok" }`.
 
 ### `POST /api/encode`
 
-Upload a video file for encoding.
+Upload a video file for encoding. Encoding starts immediately in the background.
 
 - **Content-Type:** `multipart/form-data`
 - **Field name:** `video`
+- **Field (optional):** `presetId` — encoding preset to use (default: `"header-video"`)
 - **Max file size:** 30 MB
 - **Accepted types:** `video/*`
 
@@ -51,14 +52,31 @@ Upload a video file for encoding.
 
 Uploaded files are stored in `server/tmp/{jobId}/` and automatically cleaned up after 1 hour.
 
+### `GET /api/encode/:jobId/progress`
+
+Server-Sent Events endpoint for real-time encoding progress.
+
+- Sends current state immediately on connect (supports reconnect/page refresh)
+- Streams progress updates as `{ status, progress, outputs }` where `progress` is 0–100
+- Sends a final event and closes the connection when encoding completes or errors
+- Client disconnect does not cancel server-side encoding
+
+### `GET /api/encode/:jobId/download/:suffix`
+
+Download an encoded output file by codec suffix (`av1` or `h264`).
+
+- Returns `404` if job or suffix not found
+- Returns `400` if the requested output is not yet complete
+- Filename format: `{originalName}--{suffix}.mp4`
+
 ## Encoding Presets
 
 **Header Video** — optimized for web header/hero video:
 
 | Output       | Codec     | Key Args                                        |
 | ------------ | --------- | ----------------------------------------------- |
-| `--av1.mp4`  | libsvtav1 | `-crf 35 -preset 6 -an -movflags +faststart`    |
-| `--h264.mp4` | libx264   | `-crf 23 -preset slow -an -movflags +faststart` |
+| `--av1.mp4`  | libsvtav1 | `-crf 35 -preset 4 -an -movflags +faststart`    |
+| `--h264.mp4` | libx264   | `-crf 25 -preset slow -an -movflags +faststart` |
 
 ## Project Structure
 
@@ -67,11 +85,12 @@ Uploaded files are stored in `server/tmp/{jobId}/` and automatically cleaned up 
 │   └── src/
 │       ├── index.ts          # Express app entry point
 │       ├── routes/
-│       │   └── encode.ts     # Upload endpoint
+│       │   └── encode.ts     # Upload, SSE progress, and download endpoints
 │       └── lib/
 │           ├── jobs.ts       # In-memory job tracking
 │           ├── presets.ts    # Encoding preset definitions
-│           ├── ffmpeg.ts     # FFmpeg spawn wrapper
+│           ├── ffmpeg.ts     # FFmpeg/ffprobe wrapper with progress
+│           ├── orchestrator.ts # Parallel encoding orchestration
 │           └── cleanup.ts   # Temp file cleanup (1hr TTL)
 ├── lefthook.yml              # Pre-commit hooks
 └── tsconfig.base.json        # Shared TypeScript config
