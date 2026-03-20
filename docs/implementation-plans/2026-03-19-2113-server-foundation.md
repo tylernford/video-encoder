@@ -92,24 +92,24 @@ Set up a pnpm monorepo with an Express/TypeScript server package. Includes share
 
 ```ts
 type EncodingConfig = {
-  codec: string
-  args: string[]
-  suffix: string
-}
+  codec: string;
+  args: string[];
+  suffix: string;
+};
 
 type Preset = {
-  id: string
-  label: string
-  encodings: EncodingConfig[]
-}
+  id: string;
+  label: string;
+  encodings: EncodingConfig[];
+};
 ```
 
 Header Video preset encodings:
 
-| Output suffix | Codec | Key Args |
-|---|---|---|
-| `--av1.mp4` | libsvtav1 | `-crf 35 -preset 6 -an -movflags +faststart` |
-| `--h264.mp4` | libx264 | `-crf 23 -preset slow -an -movflags +faststart` |
+| Output suffix | Codec     | Key Args                                        |
+| ------------- | --------- | ----------------------------------------------- |
+| `--av1.mp4`   | libsvtav1 | `-crf 35 -preset 6 -an -movflags +faststart`    |
+| `--h264.mp4`  | libx264   | `-crf 23 -preset slow -an -movflags +faststart` |
 
 **Done when:** Types are correct, preset data matches the spec values above.
 
@@ -148,7 +148,11 @@ Header Video preset encodings:
 **Code example:**
 
 ```ts
-function encode(inputPath: string, outputPath: string, args: string[]): Promise<void>
+function encode(
+  inputPath: string,
+  outputPath: string,
+  args: string[],
+): Promise<void>;
 ```
 
 - Spawns `ffmpeg` with args passed directly to `child_process.spawn()` (no shell)
@@ -196,9 +200,10 @@ function encode(inputPath: string, outputPath: string, args: string[]): Promise<
 
 _Filled in during `/build` phase_
 
-| Date | Task | Files | Notes |
-| ---- | ---- | ----- | ----- |
-| 2026-03-19 | Task 1 | package.json, pnpm-workspace.yaml, tsconfig.base.json, .prettierrc, .gitignore, .nvmrc | Deviated: Prettier config adjusted to user preference (semi: true, singleQuote: false). Added packageManager field (pnpm@10.28.0) and .nvmrc (v24) — not in original plan. |
+| Date       | Task   | Files                                                                                  | Notes                                                                                                                                                                                                                |
+| ---------- | ------ | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-03-19 | Task 1 | package.json, pnpm-workspace.yaml, tsconfig.base.json, .prettierrc, .gitignore, .nvmrc | Deviated: Prettier config adjusted to user preference (semi: true, singleQuote: false). Added packageManager field (pnpm@10.28.0) and .nvmrc (v24) — not in original plan.                                           |
+| 2026-03-19 | Task 2 | lefthook.yml, lefthook.rc, package.json                                                | Deviated: Added lefthook.rc for nvm loading. Used piped jobs format with prettier --write and oxlint --fix auto-fix + re-stage. Added typecheck job — not in original plan. pnpm approve-builds needed for lefthook. |
 
 ---
 
