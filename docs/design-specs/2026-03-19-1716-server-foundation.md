@@ -1,6 +1,6 @@
 # Server Foundation
 
-**Created:** 2026-03-19 **Implementation Plan:** TBD
+**Created:** 2026-03-19 **Implementation Plan:** docs/implementation-plans/2026-03-19-2113-server-foundation.md
 
 **Parent Spec:** [Video Encoder App](./2026-03-19-1623-video-encoder-app.md) (Phase 1)
 
