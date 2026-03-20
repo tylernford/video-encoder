@@ -116,7 +116,11 @@ video-encoder/
 ### FFmpeg Spawn Wrapper (`lib/ffmpeg.ts`)
 
 ```ts
-function encode(inputPath: string, outputPath: string, args: string[]): Promise<void>
+function encode(
+  inputPath: string,
+  outputPath: string,
+  args: string[],
+): Promise<void>;
 ```
 
 - Spawns `ffmpeg` as a child process
@@ -128,37 +132,37 @@ function encode(inputPath: string, outputPath: string, args: string[]): Promise<
 
 ```ts
 type EncodingConfig = {
-  codec: string
-  args: string[]
-  suffix: string
-}
+  codec: string;
+  args: string[];
+  suffix: string;
+};
 
 type Preset = {
-  id: string
-  label: string
-  encodings: EncodingConfig[]
-}
+  id: string;
+  label: string;
+  encodings: EncodingConfig[];
+};
 ```
 
 Ships with one preset:
 
-| Preset | Output | Codec | Key Args |
-|--------|--------|-------|----------|
-| Header Video | `--av1.mp4` | libsvtav1 | `-crf 35 -preset 6 -an -movflags +faststart` |
-| Header Video | `--h264.mp4` | libx264 | `-crf 23 -preset slow -an -movflags +faststart` |
+| Preset       | Output       | Codec     | Key Args                                        |
+| ------------ | ------------ | --------- | ----------------------------------------------- |
+| Header Video | `--av1.mp4`  | libsvtav1 | `-crf 35 -preset 6 -an -movflags +faststart`    |
+| Header Video | `--h264.mp4` | libx264   | `-crf 23 -preset slow -an -movflags +faststart` |
 
 ### Job Tracking (`lib/jobs.ts`)
 
 ```ts
 type Job = {
-  id: string
-  status: "uploaded" | "encoding" | "complete" | "error"
-  originalName: string
-  presetId: string
-  createdAt: Date
-}
+  id: string;
+  status: "uploaded" | "encoding" | "complete" | "error";
+  originalName: string;
+  presetId: string;
+  createdAt: Date;
+};
 
-const jobs: Map<string, Job>
+const jobs: Map<string, Job>;
 ```
 
 ### Temp File Cleanup (`lib/cleanup.ts`)
