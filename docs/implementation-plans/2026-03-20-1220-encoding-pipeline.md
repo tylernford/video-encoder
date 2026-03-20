@@ -149,6 +149,7 @@ _Filled in during `/build` phase_
 
 | Date | Task | Files | Notes |
 | ---- | ---- | ----- | ----- |
+| 2026-03-20 | Task 1 | server/src/lib/jobs.ts | Done as planned. Cross-file type error in encode.ts expected until Task 4. |
 
 ---
 
