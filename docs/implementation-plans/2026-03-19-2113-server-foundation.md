@@ -183,16 +183,16 @@ function encode(
 
 ## Acceptance Criteria
 
-- [ ] `pnpm install` succeeds from root
-- [ ] `pnpm dev` starts the Express server with tsx watch
-- [ ] `pnpm build` compiles TypeScript to `server/dist/`
-- [ ] Lefthook pre-commit runs Prettier check + oxlint
-- [ ] `POST /api/encode` with a valid video file returns `{ jobId }` with 201
-- [ ] `POST /api/encode` with a >30MB file returns 400
-- [ ] `POST /api/encode` with a non-video file returns 400
-- [ ] Uploaded file is stored in `server/tmp/{jobId}/`
-- [ ] Temp files older than 1 hour are cleaned up automatically
-- [ ] FFmpeg spawn wrapper can execute a basic encode and resolve/reject
+- [x] `pnpm install` succeeds from root
+- [x] `pnpm dev` starts the Express server with tsx watch
+- [x] `pnpm build` compiles TypeScript to `server/dist/`
+- [x] Lefthook pre-commit runs Prettier check + oxlint
+- [x] `POST /api/encode` with a valid video file returns `{ jobId }` with 201
+- [x] `POST /api/encode` with a >30MB file returns 400
+- [x] `POST /api/encode` with a non-video file returns 400
+- [x] Uploaded file is stored in `server/tmp/{jobId}/`
+- [x] Temp files older than 1 hour are cleaned up automatically
+- [x] FFmpeg spawn wrapper can execute a basic encode and resolve/reject
 
 ---
 
