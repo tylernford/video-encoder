@@ -151,6 +151,7 @@ _Filled in during `/build` phase_
 | ---------- | ------ | ------------------------ | -------------------------------------------------------------------------- |
 | 2026-03-20 | Task 1 | server/src/lib/jobs.ts   | Done as planned. Cross-file type error in encode.ts expected until Task 4. |
 | 2026-03-20 | Task 2 | server/src/lib/ffmpeg.ts | Done as planned.                                                           |
+| 2026-03-20 | Task 3 | server/src/lib/orchestrator.ts | Done as planned.                                                      |
 
 ---
 
