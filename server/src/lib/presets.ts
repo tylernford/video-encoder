@@ -17,14 +17,14 @@ const presets: Preset[] = [
     encodings: [
       {
         codec: "libsvtav1",
-        args: ["-crf", "35", "-preset", "6", "-an", "-movflags", "+faststart"],
+        args: ["-crf", "35", "-preset", "4", "-an", "-movflags", "+faststart"],
         suffix: "--av1.mp4",
       },
       {
         codec: "libx264",
         args: [
           "-crf",
-          "23",
+          "25",
           "-preset",
           "slow",
           "-an",

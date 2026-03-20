@@ -153,6 +153,8 @@ _Filled in during `/build` phase_
 | 2026-03-20 | Task 2 | server/src/lib/ffmpeg.ts       | Done as planned.                                                           |
 | 2026-03-20 | Task 3 | server/src/lib/orchestrator.ts | Done as planned.                                                           |
 | 2026-03-20 | Task 4 | server/src/routes/encode.ts    | Done as planned. Full project now typechecks clean.                        |
+| 2026-03-20 | Task 5 | (verification only)            | Full flow passed: upload, SSE progress, both downloads, error cases.       |
+| 2026-03-20 | —      | server/src/lib/presets.ts      | Deviated: Updated AV1 preset 6→4, H.264 CRF 23→25 to match user's specs.   |
 
 ---
 

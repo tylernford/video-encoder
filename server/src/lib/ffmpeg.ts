@@ -70,7 +70,10 @@ export function encode(
           const us = parseInt(line.slice("out_time_us=".length), 10);
           if (!Number.isNaN(us) && duration > 0) {
             const seconds = us / 1_000_000;
-            const percent = Math.min(100, (seconds / duration) * 100);
+            const percent = Math.min(
+              100,
+              Math.max(0, (seconds / duration) * 100),
+            );
             onProgress(percent);
           }
         }
