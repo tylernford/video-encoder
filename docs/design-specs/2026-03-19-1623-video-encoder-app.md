@@ -67,10 +67,10 @@ Presets are defined as data in a config file, making it trivial to add new ones.
 
 **Header Video preset (v1):**
 
-| Output | Codec | Key Args |
-|--------|-------|----------|
-| `--av1.mp4` | libsvtav1 | `-crf 35 -preset 6 -an -movflags +faststart` |
-| `--h264.mp4` | libx264 | `-crf 23 -preset slow -an -movflags +faststart` |
+| Output       | Codec     | Key Args                                        |
+| ------------ | --------- | ----------------------------------------------- |
+| `--av1.mp4`  | libsvtav1 | `-crf 35 -preset 6 -an -movflags +faststart`    |
+| `--h264.mp4` | libx264   | `-crf 23 -preset slow -an -movflags +faststart` |
 
 ### Progress Reporting
 
@@ -116,6 +116,7 @@ Presets are defined as data in a config file, making it trivial to add new ones.
 ## Implementation Phases
 
 ### Phase 1: Server Foundation
+
 - Express server setup, project scaffolding (TypeScript, dev scripts)
 - FFmpeg integration (spawning processes, parsing stderr for progress)
 - Preset config structure (`server/lib/presets.ts`)
@@ -123,12 +124,14 @@ Presets are defined as data in a config file, making it trivial to add new ones.
 - Temp file cleanup (`setInterval`-based)
 
 ### Phase 2: Encoding Pipeline
+
 - AV1 + H.264 parallel encoding via `Promise.all`
 - SSE progress streaming endpoint
 - Download endpoints for encoded files
 - Error handling (FFmpeg failures, invalid files, oversized uploads)
 
 ### Phase 3: Frontend
+
 - React + Vite + ShadCN project setup
 - Upload form with drag-and-drop
 - Preset dropdown (populated from server)
@@ -136,6 +139,7 @@ Presets are defined as data in a config file, making it trivial to add new ones.
 - Download buttons for both output files
 
 ### Phase 4: Integration & Deployment
+
 - Express serves client build in production
 - End-to-end testing on target DigitalOcean droplet size
 - Validate AV1 encoding performance on droplet CPU

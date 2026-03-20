@@ -1,0 +1,19 @@
+{
+  "name": "video-encoder",
+  "private": true,
+  "packageManager": "pnpm@10.28.0",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter server dev",
+    "build": "pnpm --filter server build",
+    "start": "pnpm --filter server start",
+    "lint": "oxlint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "lefthook": "^2.1.4",
+    "oxlint": "^1.56.0",
+    "prettier": "^3.8.1"
+  }
+}

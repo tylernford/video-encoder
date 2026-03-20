@@ -1,0 +1,6 @@
+packages:
+  - server/
+
+onlyBuiltDependencies:
+  - esbuild
+  - lefthook
