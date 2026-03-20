@@ -214,11 +214,17 @@ _Filled in during `/build` phase_
 
 ## Completion
 
-**Completed:** [Date] **Final Status:** [Complete | Partial | Abandoned]
+**Completed:** 2026-03-19 **Final Status:** Complete
 
-**Summary:** [Brief description of what was actually built]
+**Summary:** Fully functional Express 5 / TypeScript server in a pnpm monorepo. Includes video upload endpoint with multer validation (30MB limit, video MIME filter), in-memory job tracking, Header Video encoding presets (AV1 via libsvtav1, H.264 via libx264), an FFmpeg child-process spawn wrapper, and timer-based temp file cleanup. Shared tooling includes Prettier, oxlint, and Lefthook pre-commit hooks with auto-fix.
 
-**Deviations from Plan:** [Any significant changes from original design]
+**Deviations from Plan:**
+
+- Prettier config set to user preferences (semi: true, singleQuote: false) instead of defaults
+- Added `.nvmrc` (v24) and `packageManager` field (pnpm@10.28.0) — not in original plan
+- Lefthook uses piped jobs with `prettier --write` and `oxlint --fix` auto-fix + re-stage pattern; added `lefthook.rc` for nvm loading and a typecheck job — original plan only specified `prettier --check` + `oxlint`
+- Explicit `RouterType` annotation added to encode route to fix TS2742 portability error (inferred type referenced transitive `@types/express-serve-static-core`)
+- `pnpm approve-builds` needed for lefthook and esbuild (tsx dep) — not anticipated in plan
 
 ---
 
