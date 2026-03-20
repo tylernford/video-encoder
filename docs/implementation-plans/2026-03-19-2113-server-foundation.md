@@ -204,6 +204,7 @@ _Filled in during `/build` phase_
 | ---------- | ------ | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2026-03-19 | Task 1 | package.json, pnpm-workspace.yaml, tsconfig.base.json, .prettierrc, .gitignore, .nvmrc | Deviated: Prettier config adjusted to user preference (semi: true, singleQuote: false). Added packageManager field (pnpm@10.28.0) and .nvmrc (v24) — not in original plan.                                           |
 | 2026-03-19 | Task 2 | lefthook.yml, lefthook.rc, package.json                                                | Deviated: Added lefthook.rc for nvm loading. Used piped jobs format with prettier --write and oxlint --fix auto-fix + re-stage. Added typecheck job — not in original plan. pnpm approve-builds needed for lefthook. |
+| 2026-03-19 | Task 3 | server/package.json, server/tsconfig.json, server/src/index.ts                         | pnpm approve-builds needed for esbuild (tsx dep). Express 5.2.1 installed.                                                                                                                                           |
 
 ---
 
