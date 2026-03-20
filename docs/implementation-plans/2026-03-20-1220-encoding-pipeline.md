@@ -129,17 +129,17 @@ If ffprobe fails: all outputs set to `"error"`, job status `"error"`, `complete`
 
 ## Acceptance Criteria
 
-- [ ] Uploading a video triggers parallel AV1 and H.264 encoding without waiting for client SSE connection
-- [ ] SSE endpoint streams combined progress as a percentage (0-100)
-- [ ] SSE endpoint sends current state on connect (supports reconnect and page refresh)
-- [ ] SSE endpoint sends a final event and closes when encoding completes or errors
-- [ ] `GET /api/encode/:jobId/download/av1` returns the AV1 encoded file with correct filename
-- [ ] `GET /api/encode/:jobId/download/h264` returns the H.264 encoded file with correct filename
-- [ ] If one encoding fails and the other succeeds, job status is `done` and the successful file is downloadable
-- [ ] If both encodings fail, job status is `error` with error details
-- [ ] Upload accepts `presetId` in form data and validates it against known presets
-- [ ] ffprobe extracts duration before encoding; ffprobe failure errors the entire job
-- [ ] Client disconnect does not kill server-side encoding
+- [x] Uploading a video triggers parallel AV1 and H.264 encoding without waiting for client SSE connection
+- [x] SSE endpoint streams combined progress as a percentage (0-100)
+- [x] SSE endpoint sends current state on connect (supports reconnect and page refresh)
+- [x] SSE endpoint sends a final event and closes when encoding completes or errors
+- [x] `GET /api/encode/:jobId/download/av1` returns the AV1 encoded file with correct filename
+- [x] `GET /api/encode/:jobId/download/h264` returns the H.264 encoded file with correct filename
+- [x] If one encoding fails and the other succeeds, job status is `done` and the successful file is downloadable
+- [x] If both encodings fail, job status is `error` with error details
+- [x] Upload accepts `presetId` in form data and validates it against known presets
+- [x] ffprobe extracts duration before encoding; ffprobe failure errors the entire job
+- [x] Client disconnect does not kill server-side encoding
 
 ---
 
