@@ -1,6 +1,6 @@
 # Encoding Pipeline
 
-**Created:** 2026-03-20 **Implementation Plan:** TBD
+**Created:** 2026-03-20 **Implementation Plan:** docs/implementation-plans/2026-03-20-1220-encoding-pipeline.md
 
 **Parent Spec:** [Video Encoder App](./2026-03-19-1623-video-encoder-app.md) (Phase 2)
 
