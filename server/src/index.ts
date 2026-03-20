@@ -1,6 +1,7 @@
 import express, { type ErrorRequestHandler } from "express";
 import multer from "multer";
 import encodeRouter from "./routes/encode.js";
+import { startCleanup } from "./lib/cleanup.js";
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -27,4 +28,5 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
+  startCleanup();
 });
