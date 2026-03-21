@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-03-20: Frontend
+
+Single-page React UI for the video encoder. Designers drag-and-drop a video file, watch real-time encoding progress via SSE, and download AV1 and H.264 outputs. Built with Vite, TypeScript, Tailwind v4, and ShadCN. Production build served as static files by Express.
+
+**Design:** docs/design-specs/2026-03-20-1803-frontend.md
+**Plan:** docs/implementation-plans/2026-03-20-2046-frontend.md
+**Key files:** client/src/App.tsx, client/src/components/DropZone.tsx, client/src/components/DownloadButtons.tsx, client/src/hooks/useEncodingProgress.ts, client/src/lib/api.ts, server/src/index.ts
+
 ## 2026-03-20: Encoding Pipeline
 
 Parallel AV1 + H.264 encoding with real-time SSE progress streaming and file download endpoints. Upload triggers encoding automatically, SSE streams combined progress as a percentage, and output files are downloadable by codec suffix.

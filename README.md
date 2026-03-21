@@ -1,6 +1,6 @@
 # Video Encoder
 
-Internal tool for encoding video assets into web-optimized formats. Accepts a video upload, encodes it into multiple formats (AV1 and H.264), and serves the outputs for download.
+Internal tool for encoding video assets into web-optimized formats. Drop a video file in the browser UI, watch encoding progress in real time, and download AV1 and H.264 outputs.
 
 ## Prerequisites
 
@@ -15,18 +15,18 @@ pnpm install
 pnpm dev
 ```
 
-The server starts on `http://localhost:3000` (override with `PORT` env var).
+Opens the UI at `http://localhost:5173` (Vite dev server) with API requests proxied to Express on port 3000. In production, `pnpm build && pnpm start` serves everything from port 3000.
 
 ## Scripts
 
-| Command             | Description                          |
-| ------------------- | ------------------------------------ |
-| `pnpm dev`          | Start server with tsx watch          |
-| `pnpm build`        | Compile TypeScript to `server/dist/` |
-| `pnpm start`        | Run compiled server                  |
-| `pnpm lint`         | Run oxlint                           |
-| `pnpm format`       | Format with Prettier                 |
-| `pnpm format:check` | Check formatting                     |
+| Command             | Description                                    |
+| ------------------- | ---------------------------------------------- |
+| `pnpm dev`          | Start Vite dev server + Express with tsx watch |
+| `pnpm build`        | Build client and compile server                |
+| `pnpm start`        | Run compiled server (serves UI + API)          |
+| `pnpm lint`         | Run oxlint                                     |
+| `pnpm format`       | Format with Prettier                           |
+| `pnpm format:check` | Check formatting                               |
 
 ## API
 
@@ -81,17 +81,29 @@ Download an encoded output file by codec suffix (`av1` or `h264`).
 ## Project Structure
 
 ```
+├── client/
+│   └── src/
+│       ├── App.tsx               # Main UI with upload/progress/download flow
+│       ├── components/
+│       │   ├── DropZone.tsx      # Drag-and-drop file upload
+│       │   ├── DownloadButtons.tsx # Output download links
+│       │   └── ui/              # ShadCN components (Card, Button, Progress)
+│       ├── hooks/
+│       │   └── useEncodingProgress.ts # SSE hook for real-time progress
+│       └── lib/
+│           ├── api.ts           # Upload and download URL helpers
+│           └── utils.ts         # ShadCN cn utility
 ├── server/
 │   └── src/
-│       ├── index.ts          # Express app entry point
+│       ├── index.ts             # Express app entry point
 │       ├── routes/
-│       │   └── encode.ts     # Upload, SSE progress, and download endpoints
+│       │   └── encode.ts        # Upload, SSE progress, and download endpoints
 │       └── lib/
-│           ├── jobs.ts       # In-memory job tracking
-│           ├── presets.ts    # Encoding preset definitions
-│           ├── ffmpeg.ts     # FFmpeg/ffprobe wrapper with progress
-│           ├── orchestrator.ts # Parallel encoding orchestration
-│           └── cleanup.ts   # Temp file cleanup (1hr TTL)
-├── lefthook.yml              # Pre-commit hooks
-└── tsconfig.base.json        # Shared TypeScript config
+│           ├── jobs.ts          # In-memory job tracking
+│           ├── presets.ts       # Encoding preset definitions
+│           ├── ffmpeg.ts        # FFmpeg/ffprobe wrapper with progress
+│           ├── orchestrator.ts  # Parallel encoding orchestration
+│           └── cleanup.ts       # Temp file cleanup (1hr TTL)
+├── lefthook.yml                 # Pre-commit hooks
+└── tsconfig.base.json           # Shared TypeScript config
 ```
