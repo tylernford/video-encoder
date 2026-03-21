@@ -1,0 +1,7 @@
+export default function App() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background">
+      <p className="text-foreground">Video Encoder</p>
+    </div>
+  );
+}
