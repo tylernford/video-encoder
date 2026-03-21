@@ -1,3 +1,4 @@
+import path from "node:path";
 import express, { type ErrorRequestHandler } from "express";
 import multer from "multer";
 import encodeRouter from "./routes/encode.js";
@@ -5,6 +6,8 @@ import { startCleanup } from "./lib/cleanup.js";
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
+
+app.use(express.static(path.resolve(import.meta.dirname, "../../client/dist")));
 
 app.get("/api/health", (_req, res) => {
   res.json({ status: "ok" });
