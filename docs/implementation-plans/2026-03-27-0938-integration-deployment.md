@@ -119,6 +119,7 @@ _Filled in during `/build` phase_
 | Date       | Task   | Files                          | Notes                                 |
 | ---------- | ------ | ------------------------------ | ------------------------------------- |
 | 2026-03-27 | Task 1 | server/src/lib/orchestrator.ts | Implemented as planned. Build passes. |
+| 2026-03-27 | Task 2 | ecosystem.config.cjs           | Created as planned.                   |
 
 ---
 
