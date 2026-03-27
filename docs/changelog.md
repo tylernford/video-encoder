@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-03-27: Redesign Encoding UI
+
+Redesigned the encoding interface with per-output progress cards, file name display, status icons, and a warm-toned color theme. Each encoding output (AV1, H.264) now gets its own card with individual progress tracking and inline download buttons, replacing the previous flat progress bar and separate download section.
+
+**Key files:** client/src/App.tsx, client/src/components/EncodingOutputCard.tsx, client/src/components/icons.tsx, client/src/index.css
+
 ## 2026-03-27: Integration & Deployment
 
 Configurable parallel/sequential encoding via `ENCODE_PARALLEL` env var and PM2 ecosystem config for production process management on a DigitalOcean droplet managed by Laravel Forge.
@@ -14,7 +20,7 @@ Single-page React UI for the video encoder. Designers drag-and-drop a video file
 
 **Design:** docs/design-specs/2026-03-20-1803-frontend.md
 **Plan:** docs/implementation-plans/2026-03-20-2046-frontend.md
-**Key files:** client/src/App.tsx, client/src/components/DropZone.tsx, client/src/components/DownloadButtons.tsx, client/src/hooks/useEncodingProgress.ts, client/src/lib/api.ts, server/src/index.ts
+**Key files:** client/src/App.tsx, client/src/components/DropZone.tsx, client/src/hooks/useEncodingProgress.ts, client/src/lib/api.ts, server/src/index.ts
 
 ## 2026-03-20: Encoding Pipeline
 
