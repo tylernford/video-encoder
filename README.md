@@ -101,9 +101,10 @@ pm2 start ecosystem.config.cjs
 │   └── src/
 │       ├── App.tsx               # Main UI with upload/progress/download flow
 │       ├── components/
-│       │   ├── DropZone.tsx      # Drag-and-drop file upload
-│       │   ├── DownloadButtons.tsx # Output download links
-│       │   └── ui/              # ShadCN components (Card, Button, Progress)
+│       │   ├── DropZone.tsx           # Drag-and-drop file upload
+│       │   ├── EncodingOutputCard.tsx # Per-output progress card with download
+│       │   ├── icons.tsx              # SVG icon components
+│       │   └── ui/                    # ShadCN components (Card, Button, Progress)
 │       ├── hooks/
 │       │   └── useEncodingProgress.ts # SSE hook for real-time progress
 │       └── lib/
