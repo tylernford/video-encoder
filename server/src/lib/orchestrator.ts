@@ -35,37 +35,72 @@ export async function startEncoding(job: Job, preset: Preset): Promise<void> {
 
   const jobDir = path.dirname(job.inputPath);
 
-  const results = await Promise.allSettled(
-    preset.encodings.map((enc, i) => {
+  const parallel = process.env.ENCODE_PARALLEL === "true";
+
+  if (parallel) {
+    const results = await Promise.allSettled(
+      preset.encodings.map((enc, i) => {
+        const output = job.outputs[i];
+        const outputPath = path.join(
+          jobDir,
+          `${job.originalName}${enc.suffix}`,
+        );
+
+        output.status = "encoding";
+
+        return encode(
+          job.inputPath,
+          outputPath,
+          ["-c:v", enc.codec, ...enc.args],
+          duration,
+          (percent) => {
+            output.progress = percent;
+            job.emitter.emit("progress", job);
+          },
+        ).then(() => {
+          output.status = "done";
+          output.progress = 100;
+          output.outputPath = outputPath;
+        });
+      }),
+    );
+
+    for (let i = 0; i < results.length; i++) {
+      const result = results[i];
+      if (result.status === "rejected") {
+        const output = job.outputs[i];
+        output.status = "error";
+        const reason = result.reason;
+        output.error =
+          reason instanceof Error ? reason.message : String(reason);
+      }
+    }
+  } else {
+    for (let i = 0; i < preset.encodings.length; i++) {
+      const enc = preset.encodings[i];
       const output = job.outputs[i];
       const outputPath = path.join(jobDir, `${job.originalName}${enc.suffix}`);
 
       output.status = "encoding";
 
-      return encode(
-        job.inputPath,
-        outputPath,
-        ["-c:v", enc.codec, ...enc.args],
-        duration,
-        (percent) => {
-          output.progress = percent;
-          job.emitter.emit("progress", job);
-        },
-      ).then(() => {
+      try {
+        await encode(
+          job.inputPath,
+          outputPath,
+          ["-c:v", enc.codec, ...enc.args],
+          duration,
+          (percent) => {
+            output.progress = percent;
+            job.emitter.emit("progress", job);
+          },
+        );
         output.status = "done";
         output.progress = 100;
         output.outputPath = outputPath;
-      });
-    }),
-  );
-
-  for (let i = 0; i < results.length; i++) {
-    const result = results[i];
-    if (result.status === "rejected") {
-      const output = job.outputs[i];
-      output.status = "error";
-      const reason = result.reason;
-      output.error = reason instanceof Error ? reason.message : String(reason);
+      } catch (err) {
+        output.status = "error";
+        output.error = err instanceof Error ? err.message : String(err);
+      }
     }
   }
 
