@@ -69,6 +69,22 @@ Download an encoded output file by codec suffix (`av1` or `h264`).
 - Returns `400` if the requested output is not yet complete
 - Filename format: `{originalName}--{suffix}.mp4`
 
+## Environment Variables
+
+| Variable          | Default   | Description                                          |
+| ----------------- | --------- | ---------------------------------------------------- |
+| `PORT`            | `3000`    | Port the server listens on                           |
+| `ENCODE_PARALLEL` | `"false"` | Set to `"true"` to encode all outputs simultaneously |
+
+## Production (PM2)
+
+The included `ecosystem.config.cjs` configures PM2 for process management:
+
+```bash
+pnpm build
+pm2 start ecosystem.config.cjs
+```
+
 ## Encoding Presets
 
 **Header Video** — optimized for web header/hero video:
@@ -102,8 +118,9 @@ Download an encoded output file by codec suffix (`av1` or `h264`).
 │           ├── jobs.ts          # In-memory job tracking
 │           ├── presets.ts       # Encoding preset definitions
 │           ├── ffmpeg.ts        # FFmpeg/ffprobe wrapper with progress
-│           ├── orchestrator.ts  # Parallel encoding orchestration
+│           ├── orchestrator.ts  # Encoding orchestration (parallel or sequential)
 │           └── cleanup.ts       # Temp file cleanup (1hr TTL)
+├── ecosystem.config.cjs         # PM2 process config
 ├── lefthook.yml                 # Pre-commit hooks
 └── tsconfig.base.json           # Shared TypeScript config
 ```

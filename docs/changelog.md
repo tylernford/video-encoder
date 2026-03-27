@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-03-27: Integration & Deployment
+
+Configurable parallel/sequential encoding via `ENCODE_PARALLEL` env var and PM2 ecosystem config for production process management on a DigitalOcean droplet managed by Laravel Forge.
+
+**Design:** docs/design-specs/2026-03-27-0930-integration-deployment.md
+**Plan:** docs/implementation-plans/2026-03-27-0938-integration-deployment.md
+**Key files:** server/src/lib/orchestrator.ts, ecosystem.config.cjs
+
 ## 2026-03-20: Frontend
 
 Single-page React UI for the video encoder. Designers drag-and-drop a video file, watch real-time encoding progress via SSE, and download AV1 and H.264 outputs. Built with Vite, TypeScript, Tailwind v4, and ShadCN. Production build served as static files by Express.
