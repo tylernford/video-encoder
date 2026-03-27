@@ -104,11 +104,11 @@ module.exports = {
 
 ## Acceptance Criteria
 
-- [ ] `pnpm build && pnpm start` serves the full app (client + API) on a single port
-- [ ] With `ENCODE_PARALLEL=false` (or unset), encodings run sequentially
-- [ ] With `ENCODE_PARALLEL=true`, encodings run in parallel
-- [ ] Errors on one encoding don't prevent the other from completing
-- [ ] `ecosystem.config.cjs` defines the app with correct name, script, and env defaults
+- [x] `pnpm build && pnpm start` serves the full app (client + API) on a single port
+- [x] With `ENCODE_PARALLEL=false` (or unset), encodings run sequentially
+- [x] With `ENCODE_PARALLEL=true`, encodings run in parallel
+- [x] Errors on one encoding don't prevent the other from completing
+- [x] `ecosystem.config.cjs` defines the app with correct name, script, and env defaults
 
 ---
 
@@ -125,11 +125,11 @@ _Filled in during `/build` phase_
 
 ## Completion
 
-**Completed:** [Date] **Final Status:** [Complete | Partial | Abandoned]
+**Completed:** 2026-03-27 **Final Status:** Complete
 
-**Summary:** [Brief description of what was actually built]
+**Summary:** Added configurable parallel/sequential encoding via `ENCODE_PARALLEL` env var and created PM2 ecosystem config for production process management.
 
-**Deviations from Plan:** [Any significant changes from original design]
+**Deviations from Plan:** None.
 
 ---
 
